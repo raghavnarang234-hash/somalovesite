@@ -8,9 +8,10 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
+background:radial-gradient(circle at top,#1b0033,#000);
 height:100vh;
 overflow:hidden;
+color:white;
 }
 
 .screen{
@@ -22,17 +23,22 @@ height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
-transition:0.6s;
+transition:0.7s;
 }
 
 .card{
-background:white;
+background:rgba(0,0,0,0.75);
 padding:30px;
 border-radius:20px;
 text-align:center;
 width:85%;
-max-width:400px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+max-width:420px;
+box-shadow:0 0 25px rgba(255,0,120,0.6);
+backdrop-filter:blur(6px);
+}
+
+h2,h3{
+text-shadow:0 0 12px #ff4da6;
 }
 
 button{
@@ -42,13 +48,14 @@ margin-top:12px;
 border:none;
 border-radius:25px;
 font-size:16px;
-background:#ff2f6e;
+background:linear-gradient(135deg,#ff0066,#ff4da6);
 color:white;
 cursor:pointer;
+box-shadow:0 0 12px #ff2f8f;
 }
 
 .hidden{
-transform:translateX(-100%);
+transform:translateX(-120%);
 }
 
 .heart{
@@ -63,19 +70,30 @@ animation:float 4s linear infinite;
 
 .firework{
 position:absolute;
-font-size:20px;
-animation:boom 1s ease-out forwards;
+font-size:28px;
+animation:boom 1.2s ease-out forwards;
 }
 
 @keyframes boom{
 0%{transform:scale(0);opacity:1;}
-100%{transform:scale(3);opacity:0;}
+100%{transform:scale(5);opacity:0;}
+}
+
+.photo{
+width:180px;
+height:180px;
+border-radius:20px;
+object-fit:cover;
+margin-bottom:15px;
+box-shadow:0 0 20px #ff4da6;
+border:3px solid #ff2f8f;
 }
 </style>
 </head>
 
 <body>
 
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
 <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -88,7 +106,7 @@ animation:boom 1s ease-out forwards;
 
 <p>
 Hey beautiful 😍<br>
-Tap below to start music 🎵
+Tap below to enter our love world 🌙✨
 </p>
 
 <button onclick="startMusic()">Start Music ❤️</button>
@@ -102,7 +120,7 @@ Tap below to start music 🎵
 <div class="card">
 <h2>Soma 💕</h2>
 
-<p>Ready for the question? 😏</p>
+<p>Heart ready? 😏💓</p>
 
 <h3>Will you be my Valentine? 🌹</h3>
 
@@ -119,9 +137,11 @@ Tap below to start music 🎵
 
 <div class="card">
 
+<img src="photo.jpg" class="photo">
+
 <h2>YAYYYY SOMA 😭❤️</h2>
 
-<p id="typingText" style="font-size:17px;"></p>
+<p id="typingText" style="font-size:16px;line-height:1.5;"></p>
 
 <h3>I LOVE YOU SO MUCH 💕</h3>
 
@@ -149,13 +169,22 @@ startFireworks();
 }
 
 // Typing Effect Text ❤️
-const text = "✨ Tu meri zindagi di sab ton sohni kahani ae ✨\n(You are the most beautiful story of my life) 🥹💖\n\nFrom today onwards,\nYou are officially my Valentine 🌹\n\nI promise to love you,\ncare for you,\nstand by you,\nand annoy you forever 😜❤️";
+const text =
+"✨ Tu meri zindagi di sab ton sohni kahani ae ✨\n" +
+"(You are the most beautiful story of my life) 🥹💖\n\n" +
+"From today onwards,\n" +
+"You are officially my Valentine 🌹\n\n" +
+"I promise to love you,\n" +
+"care for you,\n" +
+"stand by you,\n" +
+"and annoy you forever 😜❤️";
 
 let i = 0;
 
 function startTyping(){
 const box = document.getElementById("typingText");
 box.innerHTML = "";
+i = 0;
 
 let interval = setInterval(() => {
 box.innerHTML += text.charAt(i);
@@ -163,27 +192,30 @@ i++;
 if(i >= text.length){
 clearInterval(interval);
 }
-}, 50);
+}, 45);
 }
 
-// Hearts Rain ❤️
+// Heart Rain ❤️
 function startHearts(){
 setInterval(()=>{
 let h=document.createElement("div");
 h.innerHTML="❤️";
 h.className="heart";
 h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(15+Math.random()*20)+"px";
+h.style.fontSize=(18+Math.random()*25)+"px";
 document.body.appendChild(h);
 setTimeout(()=>{h.remove()},4000);
-},300);
+},250);
 }
 
-// Fireworks 🎆
+// BIG Fireworks 🎆
 function startFireworks(){
-for(let i=0;i<25;i++){
+
+setInterval(()=>{
+
+for(let i=0;i<15;i++){
 let f=document.createElement("div");
-f.innerHTML="✨";
+f.innerHTML="🎆";
 f.className="firework";
 f.style.left=Math.random()*100+"vw";
 f.style.top=Math.random()*100+"vh";
@@ -191,8 +223,11 @@ document.body.appendChild(f);
 
 setTimeout(()=>{
 f.remove();
-},1000);
+},1200);
 }
+
+},800);
+
 }
 
 </script>
