@@ -60,12 +60,22 @@ animation:float 4s linear infinite;
 0%{bottom:0;opacity:1;}
 100%{bottom:100vh;opacity:0;}
 }
+
+.firework{
+position:absolute;
+font-size:20px;
+animation:boom 1s ease-out forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(3);opacity:0;}
+}
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
 <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -111,24 +121,7 @@ Tap below to start music 🎵
 
 <h2>YAYYYY SOMA 😭❤️</h2>
 
-<p style="font-size:17px;">
-
-✨ <b>Tu meri zindagi di sab ton sohni kahani ae</b> ✨<br>
-(You are the most beautiful story of my life) 🥹💖
-
-<br><br>
-
-From today onwards,<br>
-You are officially my Valentine 🌹
-
-<br><br>
-
-I promise to love you,<br>
-care for you,<br>
-stand by you,<br>
-and annoy you forever 😜❤️
-
-</p>
+<p id="typingText" style="font-size:17px;"></p>
 
 <h3>I LOVE YOU SO MUCH 💕</h3>
 
@@ -142,7 +135,6 @@ const music = document.getElementById("bgMusic");
 
 function startMusic(){
 music.play();
-
 document.getElementById("screen1").classList.add("hidden");
 document.getElementById("screen2").classList.remove("hidden");
 }
@@ -150,10 +142,31 @@ document.getElementById("screen2").classList.remove("hidden");
 function goFinal(){
 document.getElementById("screen2").classList.add("hidden");
 document.getElementById("screen3").classList.remove("hidden");
+
+startTyping();
 startHearts();
+startFireworks();
 }
 
-// Hearts Animation
+// Typing Effect Text ❤️
+const text = "✨ Tu meri zindagi di sab ton sohni kahani ae ✨\n(You are the most beautiful story of my life) 🥹💖\n\nFrom today onwards,\nYou are officially my Valentine 🌹\n\nI promise to love you,\ncare for you,\nstand by you,\nand annoy you forever 😜❤️";
+
+let i = 0;
+
+function startTyping(){
+const box = document.getElementById("typingText");
+box.innerHTML = "";
+
+let interval = setInterval(() => {
+box.innerHTML += text.charAt(i);
+i++;
+if(i >= text.length){
+clearInterval(interval);
+}
+}, 50);
+}
+
+// Hearts Rain ❤️
 function startHearts(){
 setInterval(()=>{
 let h=document.createElement("div");
@@ -162,15 +175,4 @@ h.className="heart";
 h.style.left=Math.random()*100+"vw";
 h.style.fontSize=(15+Math.random()*20)+"px";
 document.body.appendChild(h);
-
-setTimeout(()=>{
-h.remove();
-},4000);
-
-},300);
-}
-
-</script>
-
-</body>
-</html>
+s
