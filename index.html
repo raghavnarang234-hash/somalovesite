@@ -31,13 +31,13 @@ font-size:18px;
 background:#ff2f6e;
 color:white;
 cursor:pointer;
+margin-top:15px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
 <audio id="bgMusic" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -45,28 +45,32 @@ cursor:pointer;
 <div class="card">
 <h2>Soma 💖</h2>
 
-<p>
+<p id="text">
 Hey beautiful 😍<br>
-I made something special for you...
+Tap once to start the music 🎵
 </p>
 
-<button onclick="startLove()">Click Here Love ❤️</button>
+<button id="btn" onclick="handleClick()">Start Music ❤️</button>
 </div>
 
 <script>
-
 const music = document.getElementById("bgMusic");
+let started = false;
 
-function startLove(){
+function handleClick(){
 
-music.play();   // Start song after user click
-
-setTimeout(function(){
+if(!started){
+music.play();
+started = true;
+document.getElementById("text").innerHTML =
+"Music is playing 🎶<br>Now tap again, love ❤️";
+document.getElementById("btn").innerText = "Continue 💕";
+}
+else{
 window.location.href = "ask.html";
-}, 600);
-
 }
 
+}
 </script>
 
 </body>
