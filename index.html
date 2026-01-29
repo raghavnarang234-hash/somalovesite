@@ -7,12 +7,22 @@
 <style>
 body{
 margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
 font-family:Arial;
+background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
+height:100vh;
+overflow:hidden;
+}
+
+.screen{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.6s;
 }
 
 .card{
@@ -20,57 +30,146 @@ background:white;
 padding:30px;
 border-radius:20px;
 text-align:center;
+width:85%;
+max-width:400px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 button{
-padding:12px 25px;
+width:100%;
+padding:12px;
+margin-top:12px;
 border:none;
 border-radius:25px;
-font-size:18px;
+font-size:16px;
 background:#ff2f6e;
 color:white;
 cursor:pointer;
-margin-top:15px;
+}
+
+.hidden{
+transform:translateX(-100%);
+}
+
+.heart{
+position:absolute;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{bottom:0;opacity:1;}
+100%{bottom:100vh;opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
-  <source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3" type="audio/mpeg">
 </audio>
+
+<!-- SCREEN 1 -->
+<div class="screen" id="screen1">
 
 <div class="card">
 <h2>Soma 💖</h2>
 
-<p id="text">
+<p>
 Hey beautiful 😍<br>
-Tap once to start the music 🎵
+Tap below to start music 🎵
 </p>
 
-<button id="btn" onclick="handleClick()">Start Music ❤️</button>
+<button onclick="startMusic()">Start Music ❤️</button>
+</div>
+
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen hidden" id="screen2">
+
+<div class="card">
+<h2>Soma 💕</h2>
+
+<p>Ready for the question? 😏</p>
+
+<h3>Will you be my Valentine? 🌹</h3>
+
+<button onclick="goFinal()">YES OF COURSE 😘</button>
+<button onclick="goFinal()">OBVIOUSLY YES 🥹</button>
+<button onclick="goFinal()">CLICK HERE LOVE 💌</button>
+
+</div>
+
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen hidden" id="screen3">
+
+<div class="card">
+
+<h2>YAYYYY SOMA 😭❤️</h2>
+
+<p style="font-size:17px;">
+
+✨ <b>Tu meri zindagi di sab ton sohni kahani ae</b> ✨<br>
+(You are the most beautiful story of my life) 🥹💖
+
+<br><br>
+
+From today onwards,<br>
+You are officially my Valentine 🌹
+
+<br><br>
+
+I promise to love you,<br>
+care for you,<br>
+stand by you,<br>
+and annoy you forever 😜❤️
+
+</p>
+
+<h3>I LOVE YOU SO MUCH 💕</h3>
+
+</div>
+
 </div>
 
 <script>
+
 const music = document.getElementById("bgMusic");
-let started = false;
 
-function handleClick(){
-
-if(!started){
+function startMusic(){
 music.play();
-started = true;
-document.getElementById("text").innerHTML =
-"Music is playing 🎶<br>Now tap again, love ❤️";
-document.getElementById("btn").innerText = "Continue 💕";
-}
-else{
-window.location.href = "ask.html";
+
+document.getElementById("screen1").classList.add("hidden");
+document.getElementById("screen2").classList.remove("hidden");
 }
 
+function goFinal(){
+document.getElementById("screen2").classList.add("hidden");
+document.getElementById("screen3").classList.remove("hidden");
+startHearts();
 }
+
+// Hearts Animation
+function startHearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.innerHTML="❤️";
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},4000);
+
+},300);
+}
+
 </script>
 
 </body>
