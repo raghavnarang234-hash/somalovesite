@@ -175,4 +175,27 @@ h.className="heart";
 h.style.left=Math.random()*100+"vw";
 h.style.fontSize=(15+Math.random()*20)+"px";
 document.body.appendChild(h);
-s
+setTimeout(()=>{h.remove()},4000);
+},300);
+}
+
+// Fireworks 🎆
+function startFireworks(){
+for(let i=0;i<25;i++){
+let f=document.createElement("div");
+f.innerHTML="✨";
+f.className="firework";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+document.body.appendChild(f);
+
+setTimeout(()=>{
+f.remove();
+},1000);
+}
+}
+
+</script>
+
+</body>
+</html>
