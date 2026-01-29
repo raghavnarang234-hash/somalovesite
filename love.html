@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>I Love You Soma ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
+font-family:Arial;
+overflow:hidden;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.heart{
+position:absolute;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{bottom:0;opacity:1;}
+100%{bottom:100vh;opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>YAYYYY SOMA 😭❤️</h2>
+
+<p style="font-size:17px;">
+
+✨ <b>Tu meri zindagi di sab ton sohni kahani ae</b> ✨<br>
+(You are the most beautiful story of my life) 🥹💖
+
+<br><br>
+
+From today onwards,<br>
+You are officially my Valentine 🌹
+
+<br><br>
+
+I promise to love you,<br>
+care for you,<br>
+stand by you,<br>
+and annoy you forever 😜❤️
+
+</p>
+
+<h3>I LOVE YOU SO MUCH 💕</h3>
+
+</div>
+
+<script>
+setInterval(()=>{
+let h=document.createElement("div");
+h.innerHTML="❤️";
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>{h.remove()},4000);
+},300);
+</script>
+
+</body>
+</html>
